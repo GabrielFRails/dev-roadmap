@@ -1,21 +1,26 @@
 <template>
-  <v-container>
-    <div>
-      <v-card>
-        <v-card-title>
-          <v-select :items="statusList" label="Filtros" v-model="selectedFilterItem"></v-select>
-          <!-- <v-text-field
+  <div>
+    <v-card>
+      <v-card-title>
+        <v-select
+          :items="statusList"
+          label="Filtros"
+          v-model="selectedFilterItem"
+        ></v-select>
+        <!-- <v-text-field
             v-model="search"
             append-icon="mdi-magnify"
             label="Search"
             single-line
             hide-details
           ></v-text-field> -->
-        </v-card-title>
-        <v-data-table :headers="headers" :items="computedItems"></v-data-table>
-      </v-card>
-    </div>
-  </v-container>
+      </v-card-title>
+      <v-data-table :headers="headers" :items="computedItems"></v-data-table>
+      <template>
+        <v-btn depressed color="primary" @click="limparFiltro"> Limpar Filtro </v-btn>
+      </template>
+    </v-card>
+  </div>
 </template>
 
 <script>
@@ -117,12 +122,24 @@ export default {
       ],
     };
   },
+
+  methods: {
+    limparFiltro() {
+      this.selectedFilterItem = "";
+    },
+  },
   computed: {
-      computedItems() {
-          const filteredItems = this.appData.filter(item => item.status === this.selectedFilterItem);
-          return filteredItems;
+    computedItems() {
+      const filteredItems = this.appData.filter(
+        (item) => item.status === this.selectedFilterItem
+      );
+      if (this.selectedFilterItem === "") {
+        return this.appData;
+      } else {
+        return filteredItems;
       }
-  }
+    },
+  },
 };
 </script>
 

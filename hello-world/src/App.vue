@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <tittle-padrao></tittle-padrao>
-	<tabela-pesquisa></tabela-pesquisa>
+    <tabela-pesquisa></tabela-pesquisa>
   </v-app>
 </template>
 
@@ -15,7 +15,7 @@ export default {
   name: "app",
   components: {
     TittlePadrao,
-	TabelaPesquisa
+    TabelaPesquisa,
   },
   data: function () {
     return {
@@ -41,5 +41,4 @@ export default {
 </script>
 
 <style>
-
 </style>
